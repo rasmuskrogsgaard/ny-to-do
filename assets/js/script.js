@@ -1,28 +1,35 @@
-let myExtras = [];
-const myExtrasInput = document.getElementById('extraUdstyr');
-const myExtrasListElement = document.getElementById('extraList');
+let myList = [];
+const myListInput = document.getElementById('input-t');
+const mySubmit = document.getElementById('input-sub');
+const myListElement = document.getElementById('result');
+const myDelbutton = document.getElementById('delete-b')
+
+mySubmit.addEventListener("click", addListElement);
+myDelbutton.addEventListener("click", removeElement);
 
 
-myExtrasInput.addEventListener("change", addExtra);
+function addListElement() {
+   myList.push(myListInput.value);
 
-
-
-function addExtra() {
-   myExtras.push(myExtrasInput.value);
-
-    console.log(myExtras);
-    updateExtras();
+    console.log(myList);
+    updateList();
 
 
 }
 
+function removeElement(){
+    myList.shift(myListInput.value);
+    console.log(myList);
+    updateList();
+
+}
 
 
-function updateExtras() {
+function updateList() {
 
     let myText = '<strong> Du har valgt:</strong><br><ul>';
     
-    myExtras.map((items )=> {
+    myList.map((items )=> {
     console.log('item: ' + items);
     myText = myText + '<li>'+ items + '</li>';
     console.log('text: ' + myText);
@@ -34,7 +41,7 @@ function updateExtras() {
 
     myText= myText + '</ul>';
     console.log(myText);
-    myExtrasListElement.innerHTML = myText;
+    myListElement.innerHTML = myText;
 
 
 }
